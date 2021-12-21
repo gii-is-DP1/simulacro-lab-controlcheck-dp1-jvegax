@@ -2,17 +2,34 @@ package org.springframework.samples.petclinic.product;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class ProductService {
+
+    private ProductRepository productRepository;
+
+
+    @Autowired
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
     public List<Product> getAllProducts(){
-        return null;
+        return this.productRepository.findAll();
     }
 
     public List<Product> getProductsCheaperThan(double price) {
-        return null;
+        return this.productRepository.findByPriceLessThan(price);
     }
 
     public ProductType getProductType(String typeName) {
-        return null;
+        return this.productRepository.getProductType(typeName);
+    }
+
+    public List<ProductType> findProductTypes() {
+        return this.productRepository.findAllProductTypes();
     }
 
     public Product save(Product p){
