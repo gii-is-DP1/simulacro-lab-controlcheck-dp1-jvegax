@@ -25,7 +25,7 @@ public class ProductService {
     }
 
     public ProductType getProductType(String typeName) {
-        return null;
+        return this.productRepository.getProductType(typeName);
     }
 
     public Product save(Product p){
